@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+body{
+    background-color: #F8FAFC;
+}
+
+/* | Purpose           | Color       | Hex       |
+| ----------------- | ----------- | --------- |
+| Primary        | Indigo      | `#6366F1` |
+| Primary Hover  | Dark Indigo | `#4F46E5` |
+| Background      | Slate 50    | `#F8FAFC` |
+| Chat Area       | White       | `#FFFFFF` |
+| Sidebar        | Slate 100   | `#F1F5F9` |
+| Your Messages  | Indigo      | `#6366F1` |
+| Other Messages | Slate 200   | `#E2E8F0` |
+| Main Text      | Slate 900   | `#0F172A` |
+| Secondary Text | Slate 500   | `#64748B` |
+| Online         | Green       | `#22C55E` |
+| Error          | Red         | `#EF4444` |
+ */
+
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0F172A;
+    font-synthesis: none;
+    --primary: #6366F1;
+    --primary-hover: #4F46E5;
+    --background: #F8FAFC;
+    --surface: #FFFFFF;
+    --sidebar: #F1F5F9;
+    --border: #E2E8F0;
+    --text: #0F172A;
+    --muted: #64748B;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+.register-page { min-height: 100svh; display: grid; place-items: center; padding: 48px 24px; background: var(--background); }
+.register-shell { width: min(1060px, 100%); display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid var(--border); border-radius: 24px; background: var(--surface); }
+.register-story { display: flex; flex-direction: column; padding: 40px 44px 32px; background: var(--sidebar); }
+.register-brand { display: flex; align-items: center; width: fit-content; color: var(--text); text-decoration: none; font-size: 26px; font-weight: 700; letter-spacing: -1px; }
+.brand-mark { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 10px; background: var(--primary); color: var(--surface); border-radius: 10px 10px 10px 2px; font-size: 26px; }
+.brand-dot { color: var(--primary); }
+.story-copy { margin-top: 65px; }
+.eyebrow { display: block; color: var(--muted); font-size: 10px; line-height: 1.6; font-weight: 700; letter-spacing: 1.8px; }
+.story-copy h1 { font-size: clamp(38px, 4.5vw, 56px); letter-spacing: -2.6px; line-height: 1.06; font-weight: 600; margin: 20px 0; }
+.story-copy h1 span { color: var(--primary); }
+.story-copy p { max-width: 310px; font-size: 14px; line-height: 1.8; color: var(--muted); }
+.conversation-art { position: relative; height: 165px; margin-top: 24px; }
+.chat-bubble { position: absolute; padding: 17px 23px; font-size: 18px; font-weight: 600; letter-spacing: -.4px; }
+.bubble-light { top: 12px; left: 0; background: var(--border); color: var(--text); border-radius: 17px 17px 17px 3px; transform: rotate(-5deg); }
+.bubble-light span { margin-left: 16px; color: var(--primary); }
+.bubble-primary { right: 7px; top: 75px; background: var(--primary); color: var(--surface); border-radius: 17px 17px 3px 17px; transform: rotate(5deg); }
+.typing-bubble { display: flex; gap: 5px; position: absolute; left: 30px; top: 103px; padding: 15px 19px; background: var(--border); border-radius: 20px; }
+.typing-bubble i { width: 5px; height: 5px; background: var(--muted); border-radius: 50%; }
+.story-footer { margin-top: auto; padding-top: 25px; color: var(--muted); font-size: 11px; }
+.register-form-panel { padding: 80px 54px 40px; display: flex; flex-direction: column; justify-content: center; }
+.form-intro h2 { font-size: 42px; line-height: 1.1; font-weight: 600; letter-spacing: -1.8px; margin: 17px 0; }
+.form-intro p { color: var(--muted); font-size: 13px; line-height: 1.7; margin: 0; }
+.register-form { margin-top: 32px; display: grid; gap: 20px; }
+.register-field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 9px; }
+.register-field input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px; color: var(--text); }
+.register-field input::placeholder { color: var(--muted); }
+.register-field input:focus { outline: 2px solid var(--primary); outline-offset: 2px; border-color: var(--primary); }
+.register-submit { display: flex; justify-content: space-between; align-items: center; width: 100%; background: var(--primary); color: var(--surface); border: 0; border-radius: 8px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 5px; }
+.register-submit span { font-size: 22px; line-height: 1; }
+.register-submit:hover { background: var(--primary-hover); }
+.register-submit:focus-visible, .register-brand:focus-visible { outline: 2px solid var(--primary-hover); outline-offset: 5px; }
+.form-footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; gap: 9px; align-items: center; color: var(--muted); font-size: 10px; line-height: 1.6; }
+.form-footer span { color: var(--primary); font-size: 19px; }
+@media (max-width: 760px) {
+    .register-page { padding: 20px 14px; }
+    .register-shell { grid-template-columns: 1fr; border-radius: 18px; max-width: 500px; }
+    .register-story { padding: 25px 28px; }
+    .story-copy { margin-top: 30px; }
+    .story-copy h1 { font-size: 40px; }
+    .story-copy h1 br { display: none; }
+    .story-copy h1 span::before { content: " "; }
+    .story-copy p { margin-bottom: 0; }
+    .conversation-art, .story-footer { display: none; }
+    .register-form-panel { padding: 35px 28px; }
+    .form-intro h2 { font-size: 36px; }
+}
