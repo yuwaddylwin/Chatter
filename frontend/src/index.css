@@ -68,6 +68,7 @@ button, input { font: inherit; }
 .register-submit:focus-visible, .register-brand:focus-visible { outline: 2px solid var(--primary-hover); outline-offset: 5px; }
 .form-footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; gap: 9px; align-items: center; color: var(--muted); font-size: 10px; line-height: 1.6; }
 .form-footer span { color: var(--primary); font-size: 19px; }
+.auth-message { margin: 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--sidebar); color: var(--text); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
 @media (max-width: 760px) {
     .register-page { padding: 20px 14px; }
     .register-shell { grid-template-columns: 1fr; border-radius: 18px; max-width: 500px; }
@@ -81,3 +82,6 @@ button, input { font: inherit; }
     .register-form-panel { padding: 35px 28px; }
     .form-intro h2 { font-size: 36px; }
 }
+
+.auth-message-success { color: #15803D; background: #F0FDF4; border-color: #BBF7D0; }
+.auth-message-error { color: #B91C1C; background: #FEF2F2; border-color: #FECACA; }

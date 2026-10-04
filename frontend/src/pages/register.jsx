@@ -1,11 +1,18 @@
+import {useState} from "react";
 const Register = () => {
+    const [message, setMessage] = useState("");
+    const [isSuccess, setIsSuccess] = useState(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setMessage("");
+        setIsSuccess(false);
         // Handle form submission logic here
-        const fields = new FormData(e.currentTarget);
+        const form = e.currentTarget;
+        const fields = new FormData(form);
 
         try{
-            const response = await fetch("http://localhost:8000/register", {
+            const response = await fetch("http://localhost:8000/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -17,9 +24,17 @@ const Register = () => {
                 })
             })
             const data = await response.json();
-            console.log(data);
+            if (!response.ok) {
+                throw new Error(data.message || "Registration failed");
+            }
+            setIsSuccess(true);
+            setMessage("Registration successful!");
+            console.log(data); // Log the response data for debugging
+            form.reset(); // Reset the form fields after successful registration
         } catch (error) {
             console.error("Error registering user:", error);
+            setMessage("Registration failed. Please try again.");
+            form.reset(); // Reset the form fields if registration fails
         }
     };
 
@@ -63,6 +78,7 @@ const Register = () => {
                             <input type="password" id="password" name="password" placeholder="Create a password" autoComplete="new-password" required />
                         </div>
                         <button type="submit" className="register-submit">Create account <span aria-hidden="true">↗</span></button>
+                        {message && <p className={`auth-message ${isSuccess ? "auth-message-success" : "auth-message-error"}`} role="status">{message}</p>}
                     </form>
                     <div className="form-footer"><span aria-hidden="true">✳</span> Your next great conversation is one hello away.</div>
                 </div>
