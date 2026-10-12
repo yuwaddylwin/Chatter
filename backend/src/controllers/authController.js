@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import JWT from "jsonwebtoken";
 import User from "../models/user.js";
 
 const RegisterUser = async (req, res) => {
@@ -42,6 +43,8 @@ const RegisterUser = async (req, res) => {
 };
 export { RegisterUser };
 
+
+
 const SignInUser = async (req, res) => {
   const { email, password} = req.body ?? {};
 
@@ -72,8 +75,21 @@ const SignInUser = async (req, res) => {
       });
     }
 
+    // JWT token generation
+    const payload = {
+      id: user._id,
+      username: user.username,
+      email: user.email,
+    }
+
+    const token = JWT.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+
     return res.status(200).json({
       message: "Sign in successful!",
+      // JWT token and user data should be returned in the response
+      token: token,
       user: {
         id: user._id,
         username: user.username,
@@ -88,3 +104,34 @@ const SignInUser = async (req, res) => {
   }
 };
 export { SignInUser };
+
+
+// Get the currently authenticated user - sends the user's information to the frontend
+const GetCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId)
+      .select("_id username email");
+
+    if (!user) {
+      return res.status(401).json({
+        message: "This account no longer exists.",
+      });
+    }
+
+    return res.status(200).json({
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error("Fetching current user failed:", error);
+
+    return res.status(500).json({
+      message: "Error fetching current user.",
+    });
+  }
+};
+
+export { GetCurrentUser };

@@ -37,8 +37,8 @@ const SignIn = () => {
             form.reset(); // Reset the form fields after successful sign in
         } catch (error) {
             console.error("Error signing in:", error);
-            setMessage("Sign in failed. Please try again.");
-            form.reset();
+            setMessage(error.message);
+            setIsSuccess(false);
         }
     };
 

@@ -6,6 +6,11 @@ import authRoutes from "./routes/authRoutes.js";
 
 
 dotenv.config();
+// To check if the environment variables are loaded correctly after the dotenv.config() call
+if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET is missing from your environement variables");
+}
+
 connectDB();
 
 const app = express();
