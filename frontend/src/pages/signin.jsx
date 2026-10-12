@@ -1,6 +1,9 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 const SignIn = () => {
-   const [message, setMessage] = useState("");
+    const navigate = useNavigate();
+    const [message, setMessage] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -33,6 +36,9 @@ const SignIn = () => {
             console.log("Sign in successful:", data);
             setIsSuccess(true);
             setMessage("Sign in successful!");
+
+            // passing the user data to the home page using navigate and state
+            navigate("/home" , {state: {user: data.user}}); // Redirect to the home page after successful sign in
             console.log(data); // Log the response data for debugging
             form.reset(); // Reset the form fields after successful sign in
         } catch (error) {
