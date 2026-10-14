@@ -1,12 +1,33 @@
 import {useLocation} from "react-router-dom";
+import SearchUsers from "../components/SearchUsers.jsx";
 
 const Home = () => {
     const location = useLocation();
     const user = location.state?.user; // Access the user data passed from the SignIn page
     return (
-        <div>
-            <h1>Welcome back, {user?.username}!🖐️ </h1>
-        </div>
+        <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-8 sm:py-12">
+            <div className="mx-auto max-w-3xl">
+                <div className="mb-12 flex items-center gap-2 text-2xl font-bold tracking-tight text-slate-900">
+                    <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-xl rounded-bl-sm bg-indigo-500 text-white">c</span>
+                    <span>chatter<span className="text-indigo-500">.</span></span>
+                </div>
+                <header className="mb-8">
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-indigo-500">Your community</p>
+                    <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                        Welcome back{user?.username ? `, ${user.username}` : ""}!
+                        <span className="ml-2 inline-block" aria-hidden="true">👋</span>
+                    </h1>
+                    <p className="mt-3 leading-relaxed text-slate-500">A familiar face. A new conversation. Find your people.</p>
+                </header>
+                <section aria-labelledby="discover-title" className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                    <div className="mb-7 border-b border-slate-100 pb-6">
+                        <h2 id="discover-title" className="text-xl font-semibold tracking-tight text-slate-900">Discover people</h2>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-500">Find people in your community.</p>
+                    </div>
+                    <SearchUsers />
+                </section>
+            </div>
+        </main>
     )
 }
 

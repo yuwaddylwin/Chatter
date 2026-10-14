@@ -37,6 +37,9 @@ const SignIn = () => {
             setIsSuccess(true);
             setMessage("Sign in successful!");
 
+            // save the token after sign in 
+            sessionStorage.setItem("token",data.token);
+
             // passing the user data to the home page using navigate and state
             navigate("/home" , {state: {user: data.user}}); // Redirect to the home page after successful sign in
             console.log(data); // Log the response data for debugging
