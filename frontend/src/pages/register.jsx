@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 const Register = () => {
     const [message, setMessage] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
@@ -12,11 +13,13 @@ const Register = () => {
         const fields = new FormData(form);
 
         try{
+            // fetch from the backend api 
             const response = await fetch("http://localhost:8000/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
+                // 
                 body: JSON.stringify({
                     username: fields.get('username'),
                     email: fields.get('email'),
@@ -79,6 +82,9 @@ const Register = () => {
                         </div>
                         <button type="submit" className="register-submit">Create account <span aria-hidden="true">↗</span></button>
                         {message && <p className={`auth-message ${isSuccess ? "auth-message-success" : "auth-message-error"}`} role="status">{message}</p>}
+                        <p className="register-login-link">
+                            Already have an account? <Link to="/signin">Sign in</Link>
+                        </p>
                     </form>
                     <div className="form-footer"><span aria-hidden="true">✳</span> Your next great conversation is one hello away.</div>
                 </div>

@@ -65,6 +65,10 @@ button, input { font: inherit; }
 .register-submit { display: flex; justify-content: space-between; align-items: center; width: 100%; background: var(--primary); color: var(--surface); border: 0; border-radius: 8px; padding: 14px 18px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 5px; }
 .register-submit span { font-size: 22px; line-height: 1; }
 .register-submit:hover { background: var(--primary-hover); }
+.register-login-link { margin: 0; text-align: center; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.register-login-link a { color: var(--primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.register-login-link a:hover { color: var(--primary-hover); }
+.register-login-link a:focus-visible { outline: 2px solid var(--primary-hover); outline-offset: 4px; border-radius: 2px; }
 .register-submit:focus-visible, .register-brand:focus-visible { outline: 2px solid var(--primary-hover); outline-offset: 5px; }
 .form-footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; gap: 9px; align-items: center; color: var(--muted); font-size: 10px; line-height: 1.6; }
 .form-footer span { color: var(--primary); font-size: 19px; }

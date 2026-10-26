@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 const requireAuth = (req, res, next) => {
   const authorization = req.get("Authorization");
+  // only call .match() if the authentication isn't null or undefined
   const match = authorization?.match(/^Bearer\s+(\S+)$/i);
 
   if (!match) {
@@ -10,6 +11,7 @@ const requireAuth = (req, res, next) => {
     });
   }
 
+  // take only the code follows by Bearer
   const token = match[1];
 
   try {
@@ -27,6 +29,7 @@ const requireAuth = (req, res, next) => {
       });
     }
 
+    // a protected route can use req.userId to find the user's profile in the database.
     req.userId = payload.id;
   } catch (error) {
     return res.status(401).json({

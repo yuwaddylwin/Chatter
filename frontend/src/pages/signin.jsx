@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ const SignIn = () => {
             setIsSuccess(true);
             setMessage("Sign in successful!");
 
-            // save the token after sign in 
+            // SAVE THE TOKEN AFTER SIGN IN 
             sessionStorage.setItem("token",data.token);
 
             // passing the user data to the home page using navigate and state
@@ -88,6 +89,9 @@ const SignIn = () => {
                         </div>
                         <button type="submit" className="register-submit">Sign In <span aria-hidden="true">↗</span></button>
                         {message && <p className={`auth-message ${isSuccess ? "auth-message-success" : "auth-message-error"}`} role="status">{message}</p>}
+                        <div className="register-login-link">
+                            <p>Don't have an account? <Link to="/">Register</Link></p>
+                        </div>
                     </form>
                     <div className="form-footer"><span aria-hidden="true">✳</span> There’s always more to talk about.</div>
                 </div>
